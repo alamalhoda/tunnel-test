@@ -5,7 +5,6 @@ RUN apt-get update && apt-get install -y \
     python3 \
     openssh-server \
     net-tools \
-    rsyslog \
     && rm -rf /var/lib/apt/lists/*
 
 # تنظیم SSH
@@ -21,9 +20,6 @@ RUN ssh-keygen -A
 RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
 COPY authorized_keys /root/.ssh/authorized_keys
 RUN chmod 600 /root/.ssh/authorized_keys
-
-# فعال کردن rsyslog برای لاگ‌ها
-RUN service rsyslog start
 
 # باز کردن پورت SSH
 EXPOSE 2222
