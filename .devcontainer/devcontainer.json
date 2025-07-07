@@ -1,0 +1,8 @@
+{
+    "name": "Tunnel Test",
+    "build": {
+      "dockerfile": "Dockerfile"
+    },
+    "forwardPorts": [2222],
+    "postCreateCommand": "echo 'Codespace آماده است!'"
+  }
