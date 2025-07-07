@@ -4,10 +4,11 @@ FROM ubuntu:22.04
 RUN apt-get update && apt-get install -y \
     python3 \
     openssh-server \
+    net-tools \
+    rsyslog \
     && rm -rf /var/lib/apt/lists/*
 
 # تنظیم SSH
-# بررسی وجود پوشه /var/run/sshd و ایجاد اگه وجود نداره
 RUN mkdir -p /var/run/sshd && chmod 755 /var/run/sshd
 RUN echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
 RUN echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config
@@ -20,6 +21,9 @@ RUN ssh-keygen -A
 RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
 COPY authorized_keys /root/.ssh/authorized_keys
 RUN chmod 600 /root/.ssh/authorized_keys
+
+# فعال کردن rsyslog برای لاگ‌ها
+RUN service rsyslog start
 
 # باز کردن پورت SSH
 EXPOSE 2222
