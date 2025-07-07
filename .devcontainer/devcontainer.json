@@ -4,7 +4,7 @@
       "dockerfile": "Dockerfile",
       "context": "."
     },
-    "forwardPorts": [2222],
-    "postCreateCommand": "echo 'Codespace آماده است!' && /usr/sbin/sshd -p 2222",
+    "forwardPorts": [1080],
+    "postCreateCommand": "echo 'Codespace آماده است!' && /usr/sbin/sshd -p 1080",
     "runArgs": ["--cap-add=NET_ADMIN", "--security-opt", "seccomp=unconfined"]
   }
