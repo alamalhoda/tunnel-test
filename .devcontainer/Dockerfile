@@ -17,11 +17,6 @@ RUN echo 'Port 1080' >> /etc/ssh/sshd_config
 # تنظیم پسورد برای کاربر root
 RUN echo 'root:MySecurePass123!' | chpasswd  # جای MySecurePass123! پسورد امن خودت رو بذار
 
-# کپی کلید عمومی به کانتینر
-RUN mkdir -p /root/.ssh
-COPY .devcontainer/authorized_keys /root/.ssh/authorized_keys
-RUN chmod 700 /root/.ssh && chmod 600 /root/.ssh/authorized_keys && chown -R root:root /root/.ssh
-
 # تولید کلیدهای SSH برای سرور
 RUN ssh-keygen -A
 
